@@ -3,24 +3,56 @@
 <head>
   <meta charset="UTF-8">
   <title>Şifre Saklayıcı</title>
-  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    input, button {
+      margin: 5px 0;
+      padding: 8px;
+    }
+  </style>
 </head>
 <body>
   <h1>Şifre Saklayıcı</h1>
+  
+  <label>Site Adı:</label><br>
+  <input type="text" id="site"><br>
 
-  <div class="container">
-    <input type="text" id="site" placeholder="Site adı">
-    <input type="password" id="password" placeholder="Şifre">
-    <button onclick="savePassword()">Kaydet</button>
-  </div>
+  <label>Şifre:</label><br>
+  <input type="password" id="password"><br>
 
-  <div class="list">
-    <h2>Kayıtlı Şifreler</h2>
-    <ul id="passwordList"></ul>
-  </div>
+  <button onclick="savePassword()">Kaydet</button>
+  <button onclick="showPasswords()">Kayıtlı Şifreler</button>
 
-  <script src="script.js"></script>
+  <ul id="passwordList"></ul>
+
+  <script>
+    function savePassword() {
+      const site = document.getElementById('site').value;
+      const password = document.getElementById('password').value;
+      
+      if (!site || !password) return alert("Lütfen tüm alanları doldurun.");
+
+      let vault = JSON.parse(localStorage.getItem('vault') || '{}');
+      vault[site] = password;
+      localStorage.setItem('vault', JSON.stringify(vault));
+
+      alert("Şifre kaydedildi!");
+    }
+
+    function showPasswords() {
+      const list = document.getElementById('passwordList');
+      list.innerHTML = "";
+      const vault = JSON.parse(localStorage.getItem('vault') || '{}');
+
+      for (const site in vault) {
+        const li = document.createElement('li');
+        li.textContent = `${site}: ${vault[site]}`;
+        list.appendChild(li);
+      }
+    }
+  </script>
 </body>
 </html>
-
-
