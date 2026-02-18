@@ -38,6 +38,18 @@ def test_password_sign():
         i = i + 1
     assert found == True, "Şifre işaret içermiyor."
 
+def test_password_sensitivity():
+    password = generate_password(100)
+    has_upper = any(char.isupper() for char in password)
+    has_lower = any(char.islower() for char in password)
+    
+    assert has_upper == True, "Şifre büyük harf içermiyor."
+    assert has_lower == True, "Şifre küçük harf içermiyor."
+
+def test_password_no_spaces():
+    password = generate_password(100)
+    assert ' ' not in password, "Şifre boşluk karakteri içeriyor!"
+
 """
 Aşağıda önerilenlerden birini kullanarak başka bir test yazın. Alternatif olarak, kendi testinizi de oluşturabilirsiniz!
 Daha fazla test yazabilirseniz harika olur!
