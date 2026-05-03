@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Şifre Saklayıcı</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div id="toast"></div>
+
+  <!-- KURULUM EKRANI (ilk kullanım) -->
+  <div id="setupScreen" class="screen">
+    <div class="card center">
+      <div class="logo">🔐</div>
+      <h1>Şifre Saklayıcı</h1>
+      <p class="subtitle">Başlamak için bir master şifre belirleyin.</p>
+      <input type="password" id="setupPassword" placeholder="Master şifre (en az 6 karakter)">
+      <input type="password" id="setupConfirm" placeholder="Şifreyi tekrar girin">
+      <p class="error" id="setupError"></p>
+      <button class="btn-primary" onclick="setupMaster()">Hesap Oluştur</button>
+    </div>
+  </div>
+
+  <!-- GİRİŞ EKRANI -->
+  <div id="loginScreen" class="screen" hidden>
+    <div class="card center">
+      <div class="logo">🔐</div>
+      <h1>Şifre Saklayıcı</h1>
+      <p class="subtitle">Devam etmek için master şifrenizi girin.</p>
+      <input type="password" id="loginPassword" placeholder="Master şifre">
+      <p class="error" id="loginError"></p>
+      <button class="btn-primary" onclick="unlock()">Giriş Yap</button>
+      <button class="btn-text" onclick="resetAll()">Şifremi unuttum (sıfırla)</button>
+    </div>
+  </div>
+
+  <!-- ANA EKRAN -->
+  <div id="mainScreen" class="screen" hidden>
+
+    <header>
+      <h1>🔐 Şifre Saklayıcı</h1>
+      <button class="btn-lock" onclick="lock()" title="Kilitle">🔒 Kilitle</button>
+    </header>
+
+    <!-- YENİ ŞİFRE EKLE -->
+    <div class="card">
+      <h2>Yeni Şifre Ekle</h2>
+      <input type="text" id="site" placeholder="Site adı (örn: gmail.com)">
+      <div class="pass-row">
+        <input type="password" id="newPassword" placeholder="Şifre" oninput="checkStrength()">
+        <button class="btn-icon" onclick="toggleNewPass()" title="Göster / Gizle">👁</button>
+      </div>
+      <div class="strength-wrap" title="Şifre gücü">
+        <div id="strengthBar"></div>
+      </div>
+      <div class="gen-row">
+        <label>Uzunluk:</label>
+        <input type="number" id="passLength" value="16" min="8" max="32">
+        <button onclick="generatePassword()">🔀 Şifre Oluştur</button>
+      </div>
+      <button class="btn-primary" onclick="savePassword()">💾 Kaydet</button>
+    </div>
+
+    <!-- KAYITLI ŞİFRELER -->
+    <div class="card">
+      <div class="list-top">
+        <input type="text" id="search" placeholder="🔍 Kayıtlarda ara..." oninput="renderList()">
+        <div class="io-btns">
+          <button onclick="exportVault()">📥 Dışa Aktar</button>
+          <label class="btn-file">
+            📤 İçe Aktar
+            <input type="file" accept=".json" onchange="importVault(event)">
+          </label>
+        </div>
+      </div>
+      <ul id="passwordList"></ul>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
