@@ -1,0 +1,482 @@
+/* ================================================================
+   TRAFIK KORNACILARI - Stil Dosyası
+   Tema: Dark Mode + Karikatür tarzı
+   ================================================================ */
+
+/* ---- Temel Sıfırlama ---- */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg:          #0a0a18;
+    --surface:     #12122a;
+    --card:        #1a1a35;
+    --border:      #2a2a50;
+    --green:       #00e676;
+    --green-glow:  rgba(0,230,118,0.35);
+    --red:         #ff1744;
+    --red-glow:    rgba(255,23,68,0.35);
+    --yellow:      #ffea00;
+    --yellow-glow: rgba(255,234,0,0.35);
+    --white:       #f0f0ff;
+    --muted:       #7070a0;
+    --font:        'Arial Black', 'Arial Bold', Arial, sans-serif;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: var(--bg);
+    color: var(--white);
+    font-family: var(--font);
+    touch-action: none;
+}
+
+/* ================================================================
+   LAYOUT
+   ================================================================ */
+
+#app {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    max-width: 480px;
+    margin: 0 auto;
+    display: flex;
+    align-items: stretch;
+    overflow: hidden;
+}
+
+.screen {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* ================================================================
+   ANA MENÜ
+   ================================================================ */
+
+#menu-screen {
+    background: radial-gradient(ellipse at 50% 30%, #1a1a40 0%, var(--bg) 70%);
+    padding: 20px;
+}
+
+.menu-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 22px;
+    width: 100%;
+    max-width: 380px;
+}
+
+/* Logo */
+.game-logo {
+    text-align: center;
+}
+
+.logo-icon {
+    font-size: 52px;
+    animation: bounce 1.2s ease-in-out infinite alternate;
+}
+
+.game-title {
+    font-size: clamp(32px, 8vw, 48px);
+    font-weight: 900;
+    line-height: 1.1;
+    text-align: center;
+    background: linear-gradient(135deg, var(--yellow) 0%, #ff9800 50%, var(--red) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: none;
+    filter: drop-shadow(0 0 12px rgba(255,200,0,0.4));
+    margin: 6px 0;
+}
+
+.logo-cars {
+    font-size: 28px;
+    letter-spacing: 4px;
+    animation: slide 3s linear infinite;
+}
+
+/* How to play */
+.how-to-play {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 16px 20px;
+    width: 100%;
+}
+
+.how-to-play h3 {
+    font-size: 14px;
+    color: var(--yellow);
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+
+.how-to-play ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.how-to-play li {
+    font-size: 13px;
+    font-family: Arial, sans-serif;
+    font-weight: normal;
+    color: #c0c0e0;
+    line-height: 1.4;
+}
+
+.how-to-play strong {
+    color: var(--white);
+    font-family: var(--font);
+}
+
+/* Buttons */
+.btn-primary {
+    background: linear-gradient(135deg, #00c853, var(--green));
+    color: #000;
+    border: none;
+    border-radius: 50px;
+    padding: 16px 42px;
+    font-size: 18px;
+    font-family: var(--font);
+    font-weight: 900;
+    cursor: pointer;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 20px var(--green-glow), 0 0 0 0 var(--green-glow);
+    transition: transform 0.1s, box-shadow 0.1s;
+    width: 100%;
+    max-width: 280px;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px var(--green-glow);
+}
+
+.btn-primary:active {
+    transform: translateY(1px) scale(0.97);
+}
+
+.btn-secondary {
+    background: var(--card);
+    color: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 50px;
+    padding: 14px 36px;
+    font-size: 16px;
+    font-family: var(--font);
+    cursor: pointer;
+    letter-spacing: 1px;
+    transition: transform 0.1s, background 0.15s;
+    width: 100%;
+    max-width: 280px;
+}
+
+.btn-secondary:hover {
+    background: #22224a;
+    transform: translateY(-1px);
+}
+
+.menu-footer {
+    font-size: 13px;
+    color: var(--muted);
+    font-family: Arial, sans-serif;
+    font-weight: normal;
+}
+
+.menu-footer span {
+    color: var(--yellow);
+    font-family: var(--font);
+}
+
+/* ================================================================
+   OYUN EKRANI
+   ================================================================ */
+
+#game-screen {
+    flex-direction: column;
+    justify-content: flex-start;
+    background: var(--bg);
+    padding: 0;
+}
+
+/* HUD */
+#hud {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 480px;
+    padding: 8px 14px;
+    background: rgba(10,10,24,0.95);
+    border-bottom: 1px solid var(--border);
+    min-height: 54px;
+    flex-shrink: 0;
+    z-index: 10;
+}
+
+.hud-block {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-width: 70px;
+}
+
+.hud-right {
+    align-items: flex-end;
+}
+
+.hud-center {
+    align-items: center;
+    flex: 1;
+    gap: 4px;
+}
+
+.hud-label {
+    font-size: 9px;
+    color: var(--muted);
+    letter-spacing: 1.5px;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+}
+
+.hud-value {
+    font-size: 22px;
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1;
+    transition: transform 0.1s;
+}
+
+/* Combo display */
+#combo-display {
+    font-size: 13px;
+    color: var(--yellow);
+    font-weight: 900;
+    text-align: center;
+    animation: comboAppear 0.3s ease;
+    min-height: 18px;
+}
+
+/* Light warning */
+#light-warn {
+    font-size: 11px;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    min-height: 16px;
+    color: var(--muted);
+}
+
+/* Canvas */
+#gameCanvas {
+    display: block;
+    flex: 1;
+    max-width: 100%;
+    cursor: pointer;
+}
+
+/* Korna Butonu */
+#horn-wrap {
+    width: 100%;
+    max-width: 480px;
+    padding: 10px 16px;
+    background: rgba(10,10,24,0.95);
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+#horn-btn {
+    background: linear-gradient(135deg, #cc0000, var(--red));
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 12px 0;
+    width: 160px;
+    font-size: 18px;
+    font-family: var(--font);
+    font-weight: 900;
+    cursor: pointer;
+    line-height: 1.2;
+    box-shadow: 0 4px 16px var(--red-glow);
+    transition: transform 0.08s, box-shadow 0.08s;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+}
+
+#horn-btn span {
+    display: block;
+    font-size: 13px;
+    letter-spacing: 2px;
+}
+
+#horn-btn:active {
+    transform: scale(0.93);
+    box-shadow: 0 2px 8px var(--red-glow);
+}
+
+/* ================================================================
+   OYUN BİTİ
+   ================================================================ */
+
+#gameover-screen {
+    background: radial-gradient(ellipse at 50% 40%, #2a0a0a 0%, var(--bg) 65%);
+    padding: 24px;
+}
+
+.gameover-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+    width: 100%;
+    max-width: 340px;
+    animation: gameoverIn 0.5s cubic-bezier(0.34,1.56,0.64,1);
+}
+
+.gameover-emoji {
+    font-size: 56px;
+    animation: shake 0.4s ease-in-out 3;
+}
+
+.gameover-title {
+    font-size: clamp(36px, 10vw, 52px);
+    font-weight: 900;
+    color: var(--red);
+    text-shadow: 0 0 20px var(--red-glow), 0 0 40px var(--red-glow);
+    text-align: center;
+    animation: flicker 0.1s ease infinite alternate;
+}
+
+.gameover-sub {
+    font-size: 14px;
+    color: var(--muted);
+    font-family: Arial, sans-serif;
+    font-weight: normal;
+}
+
+.gameover-scores {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 16px 24px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.score-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+    font-weight: normal;
+    color: #c0c0e0;
+}
+
+.score-row strong {
+    font-size: 22px;
+    font-family: var(--font);
+    color: var(--white);
+}
+
+.score-row.highlight strong {
+    color: var(--yellow);
+}
+
+.gameover-btns {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    align-items: center;
+}
+
+/* ================================================================
+   ANİMASYONLAR
+   ================================================================ */
+
+@keyframes bounce {
+    from { transform: translateY(0); }
+    to   { transform: translateY(-10px); }
+}
+
+@keyframes slide {
+    0%   { transform: translateX(-10px); opacity: 0.6; }
+    50%  { transform: translateX(6px); opacity: 1; }
+    100% { transform: translateX(-10px); opacity: 0.6; }
+}
+
+@keyframes pulse {
+    0%, 100% { box-shadow: 0 4px 20px var(--green-glow), 0 0 0 0 var(--green-glow); }
+    50%       { box-shadow: 0 4px 20px var(--green-glow), 0 0 0 10px transparent; }
+}
+
+.pulse {
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes comboAppear {
+    from { transform: scale(0.5); opacity: 0; }
+    to   { transform: scale(1); opacity: 1; }
+}
+
+@keyframes gameoverIn {
+    from { transform: scale(0.6) rotate(-5deg); opacity: 0; }
+    to   { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20%       { transform: translateX(-8px) rotate(-3deg); }
+    40%       { transform: translateX(8px) rotate(3deg); }
+    60%       { transform: translateX(-6px); }
+    80%       { transform: translateX(6px); }
+}
+
+@keyframes flicker {
+    from { opacity: 1; }
+    to   { opacity: 0.85; }
+}
+
+/* ================================================================
+   RESPONSIVE
+   ================================================================ */
+
+@media (max-height: 600px) {
+    .how-to-play { padding: 10px 16px; }
+    .how-to-play li { font-size: 12px; }
+    .menu-content { gap: 14px; }
+    .game-title { font-size: 28px; }
+    #horn-wrap { padding: 6px 16px; }
+    #horn-btn { padding: 10px 0; }
+}
+
+@media (min-width: 481px) {
+    #app {
+        box-shadow: 0 0 60px rgba(0,0,0,0.8);
+        border-left: 1px solid var(--border);
+        border-right: 1px solid var(--border);
+    }
+}

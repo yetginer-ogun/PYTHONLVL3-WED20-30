@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Trafik Kornacıları</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+
+    <!-- ===== ANA MENÜ ===== -->
+    <div id="menu-screen" class="screen">
+        <div class="menu-content">
+            <div class="game-logo">
+                <div class="logo-icon">🚦</div>
+                <h1 class="game-title">TRAFİK<br>KORNACILARI</h1>
+                <div class="logo-cars">🚗🚙🚕</div>
+            </div>
+
+            <div class="how-to-play">
+                <h3>📖 NASIL OYNANIR?</h3>
+                <ul>
+                    <li>🟢 Yeşil ışık yanınca <strong>KORNA BAS!</strong></li>
+                    <li>⌨️ <strong>BOŞLUK</strong> tuşu veya ekrana tıkla</li>
+                    <li>🔴 Kırmızıda basarsan <strong>puan kaybedersin</strong></li>
+                    <li>⏰ Geç kalırsan <strong>sürücüler seni döver!</strong></li>
+                    <li>🔥 Combo yaparak <strong>bonus puan</strong> kazan!</li>
+                </ul>
+            </div>
+
+            <button id="start-btn" class="btn-primary pulse">🎮 OYUNU BAŞLAT</button>
+
+            <div class="menu-footer">
+                En Yüksek Skor: <span id="menu-highscore">0</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== OYUN EKRANI ===== -->
+    <div id="game-screen" class="screen hidden">
+        <!-- HUD -->
+        <div id="hud">
+            <div class="hud-block">
+                <div class="hud-label">SKOR</div>
+                <div id="score-val" class="hud-value">0</div>
+            </div>
+            <div class="hud-block hud-center">
+                <div id="combo-display"></div>
+                <div id="light-warn"></div>
+            </div>
+            <div class="hud-block hud-right">
+                <div class="hud-label">EN İYİ</div>
+                <div id="highscore-val" class="hud-value">0</div>
+            </div>
+        </div>
+
+        <!-- Canvas -->
+        <canvas id="gameCanvas"></canvas>
+
+        <!-- Mobil Korna Butonu -->
+        <div id="horn-wrap">
+            <button id="horn-btn">📯<br><span>KORNA</span></button>
+        </div>
+    </div>
+
+    <!-- ===== OYUN BİTİ ===== -->
+    <div id="gameover-screen" class="screen hidden">
+        <div class="gameover-content">
+            <div class="gameover-emoji">💥😵💥</div>
+            <h1 class="gameover-title">DAYAK YEDİN!</h1>
+            <p class="gameover-sub">Trafik sizi affetmedi...</p>
+            <div class="gameover-scores">
+                <div class="score-row">
+                    <span>Skorunuz:</span>
+                    <strong id="final-score">0</strong>
+                </div>
+                <div class="score-row highlight">
+                    <span>En Yüksek:</span>
+                    <strong id="final-highscore">0</strong>
+                </div>
+            </div>
+            <div class="gameover-btns">
+                <button id="restart-btn" class="btn-primary">🔄 Tekrar Başla</button>
+                <button id="menu-btn" class="btn-secondary">🏠 Menüye Dön</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script src="script.js"></script>
+</body>
+</html>
